@@ -1,0 +1,75 @@
+@import "site-prop.scss";
+@import "site-color.scss";
+@import "modal.scss";
+
+@mixin img-in-box($width, $br-radius, $mr) {
+    $wh: $width;
+    width: $wh;
+    height: $wh;
+    border-radius: $br-radius;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    margin-right: $mr;
+    transition: $transition;
+    &:hover{
+        border-radius:50%; 
+    }  
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@mixin separator {
+    border-bottom: 1px solid $separator-color;
+}
+
+@mixin text($size, $lh) {
+    font-size: $size;
+    line-height: $lh;
+    font-family: $site-font;
+}
+
+@mixin lft-sdbr-linkstext($size, $lh){
+    @include text($size, $lh);
+    color: $color-left-bar-links;
+    text-decoration: none;
+    transition:$transition;
+    &:hover {
+        color: mix($color-left-bar-links,$site-green-color , 10%);
+        cursor: pointer;
+    }  
+}
+@mixin title($size:15px, $lh:10px) {
+    display: inline-block;
+    color: $site-title-text-color;
+    @include text($size, $lh);
+}
+
+@mixin sidebar-link($size:15px, $lh:10px) {
+    @include text($size, $lh);
+    color: $site-text-color;
+    cursor: pointer;
+    text-decoration: none;
+    transition:$transition;
+    &:hover {
+        color: mix($site-text-color,$site-green-color , 10%);//lighten($site-text-color, 50%);
+        cursor: pointer;
+    }    
+}
+@mixin verticalTextOverflow($colRow){    
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: $colRow;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+@mixin textOverflow(){    
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}

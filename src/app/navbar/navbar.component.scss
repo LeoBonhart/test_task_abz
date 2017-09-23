@@ -1,0 +1,127 @@
+@import "~sass/mixins.scss";
+nav {
+    position: relative;
+    height: 68px;
+    min-width: 970px;
+    padding: 0;
+    border-bottom: solid 2px rgb(113, 151, 60);
+    &.navbar-green {
+        background-color: $site-green-color;
+        .navbar-collapse {
+            background-color: $site-green-color;
+        }
+    }
+    .navbar-logo {
+        margin-left: 10px;
+        padding-top: 11px;
+        padding-bottom: 15px;
+        margin-right: 31px;
+        width: 130px;
+        position: relative;
+        transition: margin 1s;
+        @media (min-width: 1200px) {
+            margin-left: 204px;
+        }
+    }
+    li {
+        transition: $transition;
+        a {
+            transition: $transition;
+            color: #E03237;
+            text-decoration: none;
+        }
+    }
+    li {
+        &.active {
+            background-color: #E03237;
+            a {
+                color: white;
+            }
+        }
+    }
+    form {
+        position: relative;
+        margin: 17px 30px 15px 0;
+        .nav-search {
+            position: relative;
+            padding-left: 37px!important;
+            box-sizing: border-box;
+            height: 34px;
+            width: 435px;
+            background: rgb(115, 153, 61);
+            border-radius: 3px/4px;
+            border: 0px solid transparent;
+            &:focus {
+                border: 0px solid transparent;
+            }
+            font-size: $site-font-size;
+            color: white;
+            font-family: $site-font;
+            &::placeholder {
+                color: white;
+            }
+            &:before {
+                position: absolute;
+                content: "\f002"!important;
+                font-family: FontAwesome;
+                line-height: 0.75em;
+                vertical-align: -15%;
+                font-size: 1.33333333em;
+                background-color: black;
+                border: 1px solid red;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 20px;
+                z-index: 10;
+            }
+        }
+        .nav-search-ico {
+            position: absolute;
+            top: 9px;
+            bottom: 9px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            z-index: 10;
+            color: $site-green-color;
+        }
+    }
+    .nav-ico {
+        font-size: 22px;
+        color: white;
+        margin: 24px 20px 20px 0;
+        transition: $transition;
+        &:hover{
+            cursor: pointer;
+            text-shadow: 0 0 10px white;  
+        }
+    }
+    .navbar-user {
+        position: relative;
+        margin: 18px 0 16px 11px;
+        line-height: 32px;
+        .user-image {
+            vertical-align: middle;
+            line-height: normal;
+            @include img-in-box(32px, 2px, 11px);
+        }
+        .user-name {
+            //display: inline-block;
+            text-align: left;
+            font-size: 17px;
+            //height: 100%;
+            font-family: $site-font;
+            color: white;
+            vertical-align: middle;            
+        }
+        &:before {
+            position: absolute;
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0px;
+        }
+    }
+}

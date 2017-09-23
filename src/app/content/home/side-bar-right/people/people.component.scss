@@ -1,0 +1,57 @@
+@import "~sass/mixins.scss";
+.people {
+    height: auto;    
+    .people-title {
+        @include title(13px,10px);
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 17px;
+        .see-all {
+            @include sidebar-link(13px,10px);
+            float: right;   
+            font-weight: 600;         
+        }
+    }
+    .people-persone {
+        $width:80px;
+        $mr:10px;
+        height: 100px;
+        margin-bottom: 20px;
+        .persone-title {
+            @include sidebar-link(15px, 15px);
+            @include  textOverflow();
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;  
+        }
+        .persone-image {
+            @include img-in-box($width, 4px, 0px);
+            margin-right: $mr - 5px;                      
+        }
+        .persone-description {
+            display: inline-block;
+            vertical-align: top;
+            letter-spacing: 0px;
+            word-wrap: normal;
+            width: calc(100% - #{$width} - #{$mr});
+            .activity {
+                @include title(14px, 16px);
+                @include verticalTextOverflow(2);
+                max-height: 32px;                
+                display: block;
+                margin-bottom: 5px;                 
+            }
+            .location {
+                @include title(14px, 16px);
+                @include  textOverflow();
+                display: block;
+                margin-bottom: 6px;
+            }
+            .add-friend {
+                @include sidebar-link(12px, 10px);
+                display: block;
+                font-weight: 600;  
+            }
+        }
+    }
+}

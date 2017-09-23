@@ -1,0 +1,24 @@
+@import "~sass/mixins.scss";
+.links {    
+    .copyright {
+        @include lft-sdbr-linkstext(12px, 10px);
+        display: block;
+        margin-top: 17px;
+        margin-bottom: 16px;
+    }
+    .terms {
+        @include lft-sdbr-linkstext(12px, 10px);
+        display: inline-block;
+        margin-right: 26px;
+    }
+    .privacy {
+        @include lft-sdbr-linkstext(12px, 10px);
+        display: inline-block;
+    }
+    .contact-us {
+        @include lft-sdbr-linkstext(12px, 10px);
+        display: block;
+        margin-top: 17px;
+        margin-bottom: 16px; 
+    }
+}

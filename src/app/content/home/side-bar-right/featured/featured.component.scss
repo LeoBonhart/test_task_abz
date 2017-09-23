@@ -1,0 +1,47 @@
+@import "~sass/mixins.scss";
+.featured {
+        height: auto;    
+        .featured-title {
+            @include title(13px,10px);
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 17px;
+            .see-all {
+                @include sidebar-link(13px,10px);
+                float: right;   
+                font-weight: 600;         
+            }
+        }
+        .featured-product {
+            $width:80px;
+            $mr:10px;
+            height: 100px;
+            margin-bottom: 20px;
+            .product-title {
+                @include sidebar-link(15px, 10px);
+                display: block;
+                margin-bottom: 7px;
+                font-weight: 600;  
+            }
+            .product-image {
+                @include img-in-box($width, 4px, 0px);
+                margin-right: $mr - 5px;
+                
+            }
+            .product-description {
+                display: inline-block;
+                vertical-align: top;
+                letter-spacing: 0px;
+                word-wrap: normal;
+                width: calc(100% - #{$width} - #{$mr});
+                .text {
+                    @include title(14px, 16px);
+                    display: block;
+                    margin-bottom: 5px; 
+                    
+                    max-height: 80px;
+                    @include verticalTextOverflow(5);
+                }                
+            }
+        }
+    }

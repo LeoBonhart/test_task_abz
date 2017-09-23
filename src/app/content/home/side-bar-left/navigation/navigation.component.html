@@ -1,0 +1,5 @@
+<div class="navigation" [ngClass]="{'active': selectedItem == item}"  *ngFor="let item of model" routerLinkActive="active" (click)="setActive($event, item)">
+    <a class="navigation-item" [routerLink]="item.action">
+        <img src="{{item.svg}}" class="navigation-ico" alt="ico"> {{item.name}}
+    </a>
+</div>

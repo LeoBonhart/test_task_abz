@@ -1,0 +1,8 @@
+
+[
+        {"id":"48911fc2-cb06-4921-92c8-b42a4b11880b","name":"Three Stars and a Crow","image":"./assets/images/advertisement.jpg","timeMS":10000,"side":1},
+        {"id":"013e930f-e2b8-40e7-b4bb-93f2cd94b2c4","name":"MetroWest","image":"./assets/images/advertisement2.jpg","timeMS":15000,"side":1},
+        {"id":"ab6d6094-e316-4d42-8956-8c8ce5a66b24","name":"Penguins","image":"./assets/images/rsb-advertisement1.jpg","timeMS":10000,"side":2},
+        {"id":"b1b622e8-469e-4e82-b994-71c7d9a14089","name":"Spodak","image":"./assets/images/rsb-advertisement2.jpg","timeMS":30000,"side":2},
+        {"id":"80bc394a-01de-426f-82cb-2de5c2c2e4dd","name":"Providence","image":"./assets/images/rsb-advertisement3.jpg","timeMS":15000,"side":2}  
+]

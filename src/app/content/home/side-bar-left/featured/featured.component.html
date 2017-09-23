@@ -1,0 +1,17 @@
+<div class="featured" *ngIf="model">
+    <span class="featured-title">
+        {{model.title}}
+        <a class="see-all" [href]="model.link.url">{{model.link.name}}</a>
+    </span>
+    <div class="featured-company" *ngFor="let item of model.companys" [attr.data-guid]="item.guid">
+        <div class="featured-image">
+            <img [src]="item.image" alt="featured">
+        </div>
+        <div class="featured-description">
+            <a class="title" [href]="item.name.url">{{item.name.name}}</a>
+            <span class="activity">{{item.activity}}</span>
+            <span class="location">{{item.location}}</span>
+            <a class="follow" [href]="item.link.url">{{item.link.name}}</a>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,24 @@
+@import "~sass/mixins.scss";
+.advertisement {
+    position: relative;
+    height: auto;
+    .advertisement-title {
+        @include title;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .advertisement-image {
+        position: relative;
+        display: inline-block;
+        height: auto;
+        width: 210px;
+    }
+    .advertisement-description {
+        display: inline-block;
+        margin-top: 8px;
+        margin-bottom: 18px;
+        color: rgb(211, 211, 211);
+        font-size: 10px;
+        line-height: 10px;
+    }
+}

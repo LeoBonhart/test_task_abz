@@ -1,0 +1,50 @@
+{
+    "title":"People you may know",
+    "link":{
+        "name":"See All",
+        "url":"#"
+    },
+    "peoples":[
+        {
+            "guid":"2adceb7d-f01f-41bf-b341-e0fedece110d",        
+            "name":{
+                "name":"Dennis Adams",
+                "url":"#"
+                },
+            "activity":"Dentist (Practice  Owner)",
+            "location":"London, England",
+            "link":{
+                "name":"Add Friend",
+                "url":"#"
+                },
+            "image":"./assets/images/people1.jpg"
+        },
+        {
+            "guid":"2a3a14c2-3f3e-45f4-a665-aa73ceb9ee9a",
+            "name":{
+                "name":"Mary Carpenter","url":"#"
+                },
+            "activity":"Dentist (Practice  Owner)",
+            "location":"Belgrade, Serbia",
+            "link":{
+                "name":"Add Friend",
+                "url":"#"
+                },
+            "image":"./assets/images/people2.jpg"
+        },
+        {
+            "guid":"efd6d9f6-6d93-4592-912a-834546474175",
+            "name":{
+                "name":"Danielle Salazar",
+                "url":"#"
+                },
+            "activity":"Dentist (Practice  Owner)",
+            "location":"Paris, France",
+            "link":{
+                "name":"Add Friend",
+                "url":"#"
+                },
+            "image":"./assets/images/people3.jpg"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+html {
+    background-color: rgb(240, 240, 240);
+}
+
+body {
+    min-width: 970px!important;
+    max-width: 1440px!important;
+    background-color: white;
+}

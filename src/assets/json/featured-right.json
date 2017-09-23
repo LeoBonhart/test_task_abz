@@ -1,0 +1,27 @@
+{
+    "title":"Featured Products",
+    "link":{
+        "name":"See All",
+        "url":"#"
+    },
+    "companys":[        
+        {
+            "guid":"68ff1622-4ec7-40ea-991b-ec21b7531c90",
+            "name":{
+                "name":"Product Name",
+                "url":"#"
+            },
+            "image":"./assets/images/rsb-feature1.jpg",
+            "description":"Product Short Description. <br>The quick brown fox jumps over the lazy dog."
+        },
+        {
+            "guid":"a01fd415-f4d3-4c30-bbfb-c1e8b6b518fe",
+            "name":{
+                "name":"Product Name",
+                "url":"#"
+            },
+            "image":"./assets/images/rsb-feature2.jpg",
+            "description":"Product Short Description. <br>The quick brown fox jumps over the lazy dog."
+        }
+    ]
+}

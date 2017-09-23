@@ -1,0 +1,17 @@
+<div class="people" *ngIf="model">
+    <span class="people-title">
+        {{model.title}}
+        <a class="see-all" [href]="model.link.url">{{model.link.name}}</a>
+    </span>
+    <div class="people-persone" *ngFor="let item of model.peoples" [attr.data-guid]="item.guid">
+        <a class="persone-title" [href]="item.name.url">{{item.name.name}}</a>
+        <div class="persone-image">
+            <img [src]="item.image" alt="people">
+        </div>
+        <div class="persone-description">
+            <span class="activity">{{item.activity}}</span>
+            <span class="location">{{item.location}}</span>
+            <a class="add-friend" [href]="item.link.url">{{item.link.name}}</a>
+        </div>
+    </div> 
+</div>

@@ -1,0 +1,169 @@
+@import "site-color.scss";
+
+@mixin get-modal($first-part, $second-part,$modal-content-h: 150px,$modal-w: 600px,$modal-nfw: 50px,$modal-br: 0px) {
+    $full-class: $first-part+'-'+$second-part;
+    $modal-border-radius: $modal-br;
+    $modal-header-height: $modal-nfw;
+    $modal-body-height: $modal-content-h;
+    $modal-footer-height: $modal-nfw;
+    $modal-width: $modal-w;
+    $z-index: 9998;
+    $modal-bg-color:$site-green-color;
+
+    .modal-backdrop {
+        z-index: $z-index - 1;
+
+        &.show {
+            opacity: .3;
+        }
+    }
+
+    .modal--#{$full-class} {
+        &.modal {
+            z-index: $z-index;
+            padding-top: 150px;
+            padding-left: 70px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            text-align: center;
+            padding: 0 !important;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                height: 100%;
+                width: 0px;
+                vertical-align: middle;
+                margin-right: -4px;
+            }
+        }
+
+        .modal--#{$first-part} {
+            width: $modal-width;
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+
+            @media (min-width: $modal-width) {
+                max-width: $modal-width;
+                margin: 30px auto;
+            }
+
+            .modal-content {
+                position: relative;
+                background-color: #fff;
+                -webkit-background-clip: padding-box;
+                background-clip: padding-box;
+                border: none;
+                border-radius: $modal-border-radius;
+                outline: 0;
+                -webkit-box-shadow: $mui-b-shadow--hover;
+                box-shadow: $mui-b-shadow--hover;
+                z-index: $z-index + 1;
+                -webkit-animation-name: zoom;
+                -webkit-animation-duration: 0.6s;
+                animation-name: zoom;
+                animation-duration: 0.6s;
+
+                @media only screen and (max-width: 700px) {
+                    width: 100%;
+                }
+
+                .modal-header {
+                    background-color: $modal-bg-color;
+                    height: $modal-header-height;
+                    color: white;
+                    position: relative;
+                    overflow: hidden;
+
+                    .modal-title {
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+
+                    .close-#{$full-class}-model {
+                        outline: none !important;
+                        padding-top: 0px;
+                        position: absolute;
+                        top: -1px;
+                        right: -1px;
+                        color: rgb(250,250,250) !important;
+                        opacity: 0.3 !important;
+                        font-size: 40px;
+                        font-weight: bold;
+                        transition: 0.3s;
+                        background: transparent;
+                        border-color: transparent;
+                        height: $modal-header-height;
+                        width: 45px;
+                        border-top-right-radius: $modal-border-radius;
+
+                        &:hover, &:focus {
+                            opacity: 1 !important;
+                            color: rgb(250,250,250) !important;
+                            text-decoration: none;
+                            cursor: pointer;
+                            text-shadow: 0 0 5px rgb(255,200,200),0 0 20px rgb(255,100,100),0 0 40px rgb(255,0,0);
+                            background: rgba(230,50,10,0.7);
+                            border-color: transparent;
+                        }
+                    }
+                }
+
+                .modal-body {
+                    font-size: 16px;
+                    height: $modal-body-height;
+                }
+
+                .modal-footer {
+                    background-color: $modal-bg-color;
+                    min-height: $modal-footer-height;
+
+                    .modal--#{$full-class}-btns {
+                        position: absolute;
+                        content: '';
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        height: $modal-footer-height;
+
+                        .modal--cancel {
+                            color: white;
+
+                            &:hover, &:focus {
+                                background: rgba(250,250,250,0.2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @-webkit-keyframes zoom {
+        from {
+            -webkit-transform: scale(0)
+        }
+
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    @keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+}
+
+
+

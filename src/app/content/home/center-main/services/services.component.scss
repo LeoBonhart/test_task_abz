@@ -1,0 +1,65 @@
+@import "~sass/mixins.scss";
+@include get-modal('error', 'services',150px,500px);
+
+.add-service {
+    width: 145px;
+    height: 30px;
+    background-color: $btn-add-color;
+    border: 0px solid transparent;
+    border-radius: 5px; 
+    color:$btn-add-text-color;
+    @include text(13px,10px);
+    transition: $transition;
+    float: right;
+    &:hover{
+        cursor: pointer;
+        background-color: $btn-add-hover-color;
+    }
+}
+.title-center-main{
+    @include text(29px,29px);
+}
+.services-conteiner{
+    margin-top:20px; 
+    border: 1px solid $services-conteiner-border-color;
+    border-radius:5px; 
+    background: $services-conteiner-bg-color;
+    padding-bottom:15px; 
+}
+
+$square:140px;
+.category{    
+    .service{
+        width: $square;
+        height: $square;
+        border: 1px solid $services-service-border-color;
+        margin-top: 15px;
+        background-color:$services-service-bg-color; 
+        transition: $transition;
+        .service-ico{
+            $wh:138px;
+            height: $wh;
+            width: $wh;
+        }
+    }
+    .service-text{
+        color: $site-text-color;
+        @include text(12.5px,15px);
+        text-align: center;
+        width: $square - 20px;
+        margin-top: 17px;
+        margin-left:auto;
+        margin-right: auto; 
+        transition: $transition;
+    }    
+    &:hover{
+        cursor: pointer;
+        .service{            
+            background-color:$services-service-bg-hover-color;
+        } 
+        .service-text{
+            color: $services-service-text-hover-color;
+        }
+    }
+}
+

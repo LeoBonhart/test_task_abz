@@ -1,0 +1,51 @@
+@import "~sass/mixins.scss";
+.navigation {
+    &.active{
+        .navigation-item {
+            background-color:$btn-add-color;
+            color: white;
+            border-color: lighten($site-green-color,20%);
+            .navigation-ico {                
+                filter: contrast(200%) brightness(200%);
+            }
+            &:hover{
+                cursor: pointer;           
+                background-color:$btn-add-hover-color;
+                color: white;
+                border-color: lighten($site-green-color,40%);
+            }
+        }
+    }
+    .navigation-item {
+        text-decoration: none;
+        color: rgb(89, 96, 107);
+        height: 50px;
+        position: relative;
+        display: block;
+        background-color: #fff;
+        @include separator;
+        font-size: $site-font-size;
+        &:before {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0px;
+        }
+        .navigation-ico {
+            //fill: rgb(199, 205, 217);
+            margin-right: 27px;
+            transition: $transition;
+        }
+        transition: $transition;
+        &:hover{
+            cursor: pointer;           
+            background-color:$services-service-bg-hover-color;
+            color: $services-service-text-hover-color;
+            border-color: $services-service-text-hover-color;
+            //.navigation-ico{
+            //    fill: $services-service-text-hover-color;
+            //}
+        }
+    }
+}

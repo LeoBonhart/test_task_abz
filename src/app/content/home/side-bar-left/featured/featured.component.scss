@@ -1,0 +1,47 @@
+@import "~sass/mixins.scss";
+.featured {
+    height: auto;
+    .featured-title {
+        @include title();
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 13px;
+        .see-all {
+            @include sidebar-link();
+            float: right;
+        }
+    }
+    .featured-company {
+        height: 80px;
+        margin-bottom: 20px;
+        .featured-image {
+            @include img-in-box(80px, 4px, 0px);
+        }
+        .featured-description {
+            display: inline-block;
+            vertical-align: top;
+            letter-spacing: 0.1px;
+            .title {
+                @include sidebar-link(17px, 17px);               
+                display: block;
+                margin-bottom: 7px;
+            }
+            .activity {
+                @include title(14px, 10px);                
+                @include  textOverflow();
+                display: block;
+                margin-bottom: 10px;
+            }
+            .location {
+                @include title(14px, 10px);
+                @include  textOverflow();
+                display: block;
+                margin-bottom: 8px;
+            }
+            .follow {
+                @include sidebar-link(12px, 10px);
+                display: block;
+            }
+        }
+    }
+}

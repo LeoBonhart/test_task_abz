@@ -1,0 +1,50 @@
+{
+    "title":"Featured Companies",
+    "link":{
+        "name":"See All",
+        "url":"#"
+    },
+    "companys":[
+        {
+            "guid":"68feaf11-cc4f-447f-b44c-056a47958a82",        
+            "name":{
+                "name":"Company Name",
+                "url":"#"
+                },
+            "activity":"Manufacturer",
+            "location":"Belgrade, Serbia",
+            "link":{
+                "name":"Follow Now",
+                "url":"#"
+                },
+            "image":"./assets/images/feature1.jpg"
+        },
+        {
+            "guid":"6c016dda-62ea-4d77-9702-3688c967ca75",
+            "name":{
+                "name":"Company Name","url":"#"
+                },
+            "activity":"Service Provider",
+            "location":"New York, USA",
+            "link":{
+                "name":"Follow Now",
+                "url":"#"
+                },
+            "image":"./assets/images/feature2.jpg"
+        },
+        {
+            "guid":"5ab32e7b-4599-4c30-8049-8a704fe2ac4f",
+            "name":{
+                "name":"Company Name",
+                "url":"#"
+                },
+            "activity":"Supplier",
+            "location":"London, England",
+            "link":{
+                "name":"Follow Now",
+                "url":"#"
+                },
+            "image":"./assets/images/feature3.jpg"
+        }
+    ]
+}

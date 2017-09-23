@@ -1,0 +1,11 @@
+<div class="advertisement">
+    <span class="advertisement-title">
+                            {{title}}
+    </span>
+    <div class="advertisement-image">
+        <img [src]="advertisementList[index].image" [alt]="advertisementList[index].name" *ngIf="advertisementList">
+    </div>
+    <span class="advertisement-description">
+                            {{description}}
+    </span>
+</div>

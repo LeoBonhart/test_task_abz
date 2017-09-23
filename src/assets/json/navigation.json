@@ -1,0 +1,26 @@
+[
+        {       
+            "name": "Feed",
+            "action":"./feed",            
+            "svg":"./assets/images/feed.svg",
+            "fa_Ico":"fa-home"
+        },
+        {
+            "name": "Ask a Colleague",
+            "action":"./ask",
+            "svg":"./assets/images/ask.svg",
+            "fa_Ico":"fa-question-circle-o"
+        },
+        {
+            "name": "Companies",
+            "action":"./companies",
+            "svg":"./assets/images/companies.svg",
+            "fa_Ico":"fa-building-o"
+        },
+        {
+            "name": "Service Directory",
+            "action":"./services",
+            "svg":"./assets/images/services.svg",
+            "fa_Ico":"fa-file-text-o"
+        }
+]

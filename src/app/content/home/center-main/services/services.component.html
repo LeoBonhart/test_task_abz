@@ -1,0 +1,42 @@
+<div class="row" *ngIf="services">
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 p-0">
+            <span class="title-center-main">Service Directory</span>    
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 p-0">
+            <button class="add-service">Add New Service</button>
+        </div>
+ </div>
+<div class="row services-conteiner" *ngIf="services">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 category" *ngFor="let item of services" [attr.data-id]="item.id">
+                <div class="service">
+                    <img [src]="item.icoUrl" class="service-ico" [alt]="item.name">
+                </div>
+                <div class="service-text">
+                        {{item.name}}
+                </div>    
+            </div>  
+</div>
+<div *ngIf="!services&&!errorMessage" class="row">
+    <img src="~images/loader-box.gif" alt="Loading..." class="mx-auto">   
+</div>
+
+<div *ngIf="errorMessage" #modal id="myModal" class="modal fade modal--error-services" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal--error">
+        <div class="modal-content">
+            <div class="modal-header c-all-scroll">
+                <button type="button" class="close close-error-services-model" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p class="modal-title" id="myModalLabel">Error {{errorMessage.code}} - {{errorMessage.message}}</p>
+            </div>
+            <div class="modal-body">
+                {{errorMessage.description}}
+            </div>
+            <div class="modal-footer">
+                <div class="row modal--error-email-btns">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <button class="mui-btn mui-btn--flat align-left modal--cancel" data-dismiss="modal" aria-label="Close" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
