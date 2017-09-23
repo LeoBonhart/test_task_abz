@@ -14,8 +14,8 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     constructor(private service: ServiceService, private rd: Renderer2) { }
 
     ngOnInit() {
-        this.getServices(); // для проверки отрабатываения модалки ошибки
-        // this.getToken()
+        // this.getServices(); // для проверки отрабатываения модалки ошибки
+        this.getToken()
 
     }
     ngAfterViewInit() {
