@@ -1,0 +1,25 @@
+@import "~sass/mixins.scss";
+
+.foo{ 
+    position: relative;
+    height: $footer-height;
+    .foo-text{
+        color: $site-title-text-color;
+        @include text(12px ,3.5); 
+        text-align: left;
+        height: 100%;
+        @include  my-v-align;
+    }
+    .copiright{
+        float: left;
+    }
+    .rigth-foo-info{
+        float: right;
+        height: 100%;
+
+        .foo-text{
+            display: inline-block;
+            margin-right:25px;             
+        }
+    }
+}

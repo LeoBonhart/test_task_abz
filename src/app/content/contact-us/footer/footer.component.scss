@@ -1,0 +1,29 @@
+@import "~sass/mixins.scss";
+
+$lr-indent:80px;
+
+.footer{
+    height: 440px;
+    background: white;
+    padding: {
+        top: 97px;
+        left: $lr-indent;
+        right: $lr-indent;
+    }
+    display: table;
+    .mui-divider{
+        margin: {            
+            left: - $lr-indent;
+            right: - $lr-indent;
+        }
+    }
+    .footer-content{
+        display: table-row;
+    }
+    .footer-bottom{
+        display: table-row;
+        vertical-align: bottom;
+        height: $footer-height;
+        position: relative;
+    }
+}

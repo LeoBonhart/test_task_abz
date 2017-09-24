@@ -1,0 +1,18 @@
+@import "~sass/mixins.scss";
+
+.header{
+    height: 510px;
+    background-color: rgb(28,37,52); 
+    position: relative;
+    overflow: hidden;
+    &:after{
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url('~images/contactus/header.jpg');
+        opacity: 0.1;
+    }
+}

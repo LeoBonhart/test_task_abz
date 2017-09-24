@@ -1,0 +1,26 @@
+@import "~sass/mixins.scss";
+
+.about-title{
+    text-align: center;
+    @include text(30px , 1); 
+    margin: 0;
+}
+.about-body{
+    text-align: left;
+    color: $site-title-text-color;
+    @include text(15.1px ,1.5); 
+    margin: {
+        top: 50px;
+        bottom: 70px;
+        left:0;
+        right:0;
+    }
+    .about-left-text{
+        padding-right: 40px;
+        padding-left: 0;
+    }
+    .about-right-text{
+        padding-left: 40px;
+        padding-right: 0;
+    }
+}
