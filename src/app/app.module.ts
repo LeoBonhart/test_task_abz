@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
-import { NavbarModule } from './navbar/navbar.module';
-import { ContentModule } from './content/index'; //
+
+import { ContentModule, ContactUsModule } from './content/index';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,8 +14,8 @@ import { ServiceService, FeaturedService, AdvertisementService, PeopleService, N
     imports: [
         BrowserModule,
         AppRoutingModule,
-        NavbarModule,
         ContentModule,
+        ContactUsModule,
         HttpModule
     ],
     declarations: [AppComponent],
