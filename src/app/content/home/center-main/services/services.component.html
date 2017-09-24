@@ -20,20 +20,23 @@
     <img src="~images/loader-box.gif" alt="Loading..." class="mx-auto">   
 </div>
 
-<div *ngIf="errorMessage" #modal id="myModal" class="modal fade modal--error-services" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div *ngIf="errorMessage" [ngClass]="errorMessageShow" #modal id="myModal" class="modal modal--error-services" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal--error">
         <div class="modal-content">
             <div class="modal-header c-all-scroll">
-                <button type="button" class="close close-error-services-model" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close close-error-services-model" data-dismiss="modal" aria-label="Close" (click)="CloseModal()"><span aria-hidden="true">&times;</span></button>
                 <p class="modal-title" id="myModalLabel">Error {{errorMessage.code}} - {{errorMessage.message}}</p>
             </div>
             <div class="modal-body">
                 {{errorMessage.description}}
             </div>
             <div class="modal-footer">
-                <div class="row modal--error-email-btns">
+                <div class="row modal--error-services-btns">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <button class="mui-btn mui-btn--flat align-left modal--cancel" data-dismiss="modal" aria-label="Close" type="button">Close</button>
+                        <button class="mui-btn mui-btn--flat align-left modal--cancel" data-dismiss="modal" aria-label="Close" (click)="CloseModal()" type="button">Close</button>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <button class="mui-btn mui-btn--flat align-right modal--cancel" data-dismiss="modal" aria-label="Close" (click)="Login()" type="button">Login</button>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,10 @@
     }
 
     .modal--#{$full-class} {
+        background-color: rgba(0,0,0,0.3); 
+        &.show-modal{
+            display: block;
+        }
         &.modal {
             z-index: $z-index;
             padding-top: 150px;
@@ -30,6 +34,7 @@
             overflow: hidden;
             text-align: center;
             padding: 0 !important;
+           
 
             &:before {
                 content: '';
@@ -130,6 +135,7 @@
                         left: 0;
                         right: 0;
                         height: $modal-footer-height;
+                        margin: 0;
 
                         .modal--cancel {
                             color: white;

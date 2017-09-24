@@ -7,3 +7,43 @@ body {
     max-width: 1440px!important;
     background-color: white;
 }
+.align-left{
+    float: left;
+}
+.align-right{
+    float: right;
+}
+/* cursor */
+.c-auto:hover {         cursor: auto           !important; }
+.c-default:hover {      cursor: default        !important; }/*Стандартная стрелка*/
+.c-none:hover {         cursor: none           !important; }
+.c-context-menu:hover { cursor: context-menu   !important; }
+.c-help:hover {         cursor: help           !important; }/*Стрелка с вопросом*/
+.c-pointer:hover {      cursor: pointer        !important; }/*Рука с пальцем, нажатие*/
+.c-progress:hover {     cursor: progress       !important; }/*Стрелка с прогрессом*/
+.c-wait:hover {         cursor: wait           !important; }/*Прогресс без стрелки*/
+.c-cell:hover {         cursor: cell           !important; }/*Курстор в виде объемного плюса, работа с таблицей*/
+.c-crosshair:hover {    cursor: crosshair      !important; }/*Курсор в виде плюса для работы с изображением*/
+.c-text:hover {         cursor: text           !important; }/*Курсор в виде работы с текстом*/
+.c-vertical-text:hover {cursor: vertical-text  !important; }/*Курсор в виде работы с текстом*/
+.c-alias:hover {        cursor: alias          !important; }/*Курсор с иконкой ярлыка*/
+.c-copy:hover {         cursor: copy           !important; }/*Курсор с плюсиком*/
+.c-move:hover {         cursor: move           !important; }/*Курсор в виде стрелок в разные стороны*/
+.c-no-drop:hover {      cursor: no-drop        !important; }/*Курсор недоступность*/
+.c-not-allowed:hover {  cursor: not-allowed    !important; }/*Курсор недоступность*/
+
+.c-all-scroll:hover {   cursor: all-scroll     !important; }/*Курсор для перетаскивания*/
+.c-col-resize:hover {   cursor: col-resize     !important; }/*Курсор изменения размера по вертикали*/
+.c-row-resize:hover {   cursor: row-resize     !important; }/*Курсор изменения размера по горизонтали*/
+.c-n-resize:hover {     cursor: n-resize       !important; }/*Стрелки указывают напроавления Север Юг и тд*/
+.c-e-resize:hover {     cursor: e-resize       !important; }
+.c-s-resize:hover {     cursor: s-resize       !important; }
+.c-w-resize:hover {     cursor: w-resize       !important; }
+.c-ns-resize:hover {    cursor: ns-resize      !important; }
+.c-ew-resize:hover {    cursor: ew-resize      !important; }
+.c-ne-resize:hover {    cursor: ne-resize      !important; }
+.c-nw-resize:hover {    cursor: nw-resize      !important; }
+.c-se-resize:hover {    cursor: se-resize      !important; }
+.c-sw-resize:hover {    cursor: sw-resize      !important; }
+.c-nesw-resize:hover {  cursor: nesw-resize    !important; }
+.c-nwse-resize:hover {  cursor: nwse-resize    !important; }
