@@ -1,6 +1,7 @@
 @import "site-prop.scss";
 @import "site-color.scss";
 @import "modal.scss";
+@import "btns.scss";
 
 @mixin img-in-box($width, $br-radius, $mr) {
     $wh: $width;

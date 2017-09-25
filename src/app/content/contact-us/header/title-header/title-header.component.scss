@@ -1,0 +1,12 @@
+@import "~sass/mixins.scss";
+    
+    .title-logo{
+        float: left;
+    }
+    .title-btn{
+        float: right;
+        margin-top: 5px;
+        .btn-log-in-now{
+            @include btn-denteez(109px, 30px);
+        }
+    }

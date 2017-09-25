@@ -2,19 +2,7 @@
 @include get-modal('error', 'services',150px,500px);
 
 .add-service {
-    width: 145px;
-    height: 30px;
-    background-color: $btn-add-color;
-    border: 0px solid transparent;
-    border-radius: 5px; 
-    color:$btn-add-text-color;
-    @include text(13px,10px);
-    transition: $transition;
-    float: right;
-    &:hover{
-        cursor: pointer;
-        background-color: $btn-add-hover-color;
-    }
+    @include btn-denteez(145px, 30px);
 }
 .title-center-main{
     @include text(29px,29px);

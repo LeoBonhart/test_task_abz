@@ -1,0 +1,17 @@
+@import "site-color.scss";
+
+@mixin btn-denteez($width, $height, $br-radius: 5px, $tx-size:13px, $tx-line:10px){
+    width: $width;
+    height: $height;
+    background-color: $btn-add-color;
+    border: 0px solid transparent;
+    border-radius: $br-radius; 
+    color:$btn-add-text-color;
+    @include text($tx-size,$tx-line);
+    transition: $transition;
+    float: right;
+    &:hover{
+        cursor: pointer;
+        background-color: $btn-add-hover-color;
+    }
+}

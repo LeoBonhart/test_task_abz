@@ -2,9 +2,10 @@
 
 .header{
     height: 510px;
-    background-color: rgb(28,37,52); 
+    background-color: rgb(28,37,52);
     position: relative;
     overflow: hidden;
+
     &:after{
         position: absolute;
         content: '';
@@ -14,5 +15,22 @@
         width: 100%;
         background-image: url('~images/contactus/header.jpg');
         opacity: 0.1;
+    }
+    .header-helper-z-index{
+        z-index:999; 
+        position:relative
+    }
+    .title-header{
+        margin: {
+            left: 50px;
+            right: 40px;
+            top:40px;
+        }
+    }
+    .title-text{
+        // margin-top: 110px;
+        margin-top: 190px;
+        text-align: center;
+        color: rgb(243, 244, 246);
     }
 }
