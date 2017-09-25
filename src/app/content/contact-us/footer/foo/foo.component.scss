@@ -2,6 +2,7 @@
 
 .foo{ 
     position: relative;
+    // пришлось такое делать, потому что элемент <foo> как бы не имеет атрибута высоты. И поэтому нельзя было поставить 100%
     height: $footer-height;
     .foo-text{
         color: $site-title-text-color;
