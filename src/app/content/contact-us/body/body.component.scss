@@ -1,8 +1,147 @@
 @import "~sass/mixins.scss";
 
-.body{
+.contactus-body{
     min-height: 816px;
     height: 816px;
     background-image: url('~images/contactus/patern.jpg');
     background-position: 335px 120px; // =)
+
+    .contactus-panel{
+        width: 760px;
+        position: absolute;
+        content:'';
+        top: 410px;
+        height: auto;
+        left: 0;
+        right:0;
+        margin: {
+            left: auto;
+            right: auto;
+        }
+
+        .form-panel{
+            width: 100%;
+            height: auto;// 745px;
+            background-color: white; 
+            border-radius: 5px;
+            padding: 20px;
+            
+            .marked {
+                color: rgb(193,193,193);
+            }
+            .image-placeholder{
+                $wh: 130px;
+                width: $wh;
+                height: $wh; 
+                border-radius: 4px;
+                border: $border-input;
+                background-color: rgb(247,247,247) ;
+                .text-image-placeholder{
+                    text-align: center;
+                    padding: 18px;
+
+                    .title{
+                        @include text(16px, 1); 
+                        color: rgb(124, 134, 149);
+                        font-weight: 600;
+                        margin: {
+                            top:15px;
+                            bottom:7px;
+                        } 
+                    }
+                    .description{
+                        @include text(12px, 1.2); 
+                        color: rgb(194, 194, 196);
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        
+        .btn-submit{
+            margin-top: 20px;
+            @include btn-denteez(100%, 52px,5px,16px,2.625);
+            text-align: center;
+            position: relative;
+            vertical-align: middle;
+            @include my-v-align;
+        }
+    }    
 }
+
+.detist-textfield{
+    $padding:20px;
+    $margin-b:20px;
+    $text-size:16px;
+    $input-h:52px;
+    $txta-mh:152px;
+    $border-r:5px;
+
+    input[type='text']{
+        width: 100%;
+        height: $input-h;
+        border-radius: $border-r;
+        border: $border-input;
+        margin-bottom: $margin-b;
+        outline: none;
+        padding: $padding;
+        @include text($text-size, 1); 
+        color: $site-text-color;
+
+        &::-webkit-input-placeholder,
+        &::-moz-placeholder,
+        &:-ms-input-placeholder,   
+        &:-moz-placeholder{
+            @include text($text-size, 1);
+            color: $site-title-text-color;
+        }
+    } 
+    input[type='email'],
+    input[type='password']{
+        @extend input[type='text'];
+    }
+    &.drpdwn{
+        position: relative;
+        &:after{
+            content: '';
+            position: absolute;
+            right: $padding + 10px;
+            bottom: $margin-b + $padding;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent; 
+            border-top-color: $site-title-text-color;  
+            border-bottom: 0;
+        }
+        &.open:after{
+            bottom: $margin-b + $padding + 3px;
+            transform: rotate(180deg);
+        }
+        select{
+            appearance: none;
+        }        
+    } 
+    select{
+        @extend input[type='text'];
+        padding: {
+            top:0;
+            bottom: 0;
+            left: $padding;
+            right:$padding;
+        } 
+    } 
+    textarea{
+        @extend input[type='text'];
+        width: 100%;
+        min-height: $txta-mh;
+        border-radius: $border-r;
+        border: $border-input;
+    }
+    label[for]{
+        @include text($text-size, 1); 
+        color: $site-text-color;
+        margin-bottom:7px; 
+    }   
+}
+  

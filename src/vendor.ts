@@ -44,3 +44,7 @@ import './assets/json/featured-right.json';
 import './assets/json/navigation.json';
 import './assets/json/people.json';
 
+// bootstrap-select
+// import './assets/lib/jquery/dist/jquery';
+// import './assets/lib/bootstrap-select/dist/js/bootstrap-select';
+// import './assets/lib/bootstrap-select/dist/css/bootstrap-select.css';
