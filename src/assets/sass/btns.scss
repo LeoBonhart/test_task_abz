@@ -14,4 +14,11 @@
         cursor: pointer;
         background-color: $btn-add-hover-color;
     }
+    &:disabled{
+        background-color: grayscale($btn-add-color);
+        &:hover{
+            cursor: not-allowed;
+            background-color: mix($btn-add-hover-color,red,30%);
+        } 
+    }
 }

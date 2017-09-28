@@ -1,35 +1,51 @@
 <div class="contactus-body">
-    <div class="contactus-panel">
+    <form class="contactus-form" [formGroup]="contactUsForm" (ngSubmit)="onSubmit(contactUsForm)" novalidate>
             <div class="form-panel">
                 <p class="marked">Fields marked “*” are required</p>
                 <div class="row">
-                            <div class="drpdwn detist-textfield col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <label for="enquery">Name *</label>
-                                <select id="enquery" name="Enquery">
-                                    <option value="1">Some value</option>
-                                    <option value="2">Some value</option>
-                                    <option value="3">Some value</option>
+                            <div class="drpdwn detist-textfield col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngIf="enquiry">
+                                <label for="department">Enquery *</label>
+                                <select id="department" name="department" formControlName="department" (change)="onChangeDepartment(contactUsForm.get('department').value)">
+                                    <option *ngFor="let item of enquiry" [value]="item.id">{{item.name}}</option>
                                 </select>
+                                <div *ngIf="formErrors.enquery">
+                                        {{formErrors.department}}
+                                </div>
                             </div>
-                            <div class="detist-textfield if-other col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <input type="text" class="form-control" id="other" placeholder="Other">
+                            <div class="detist-textfield if-other col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngIf="enquiry&&contactUsForm.get('department').value==6">
+                                    <input type="text" class="form-control" id="other" name="other_department" formControlName="other_department" placeholder="Other" >
+                                    <div *ngIf="formErrors.other_department">
+                                        {{formErrors.other_department}}
+                                    </div>
                             </div>
                             <div class="detist-textfield col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                    <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Dentist">
+                                    <label for="user_name">Name *</label>
+                                    <input type="text" class="form-control" id="user_name" name="user_name" formControlName="user_name" placeholder="Dentist">
+                                    <div *ngIf="formErrors.user_name">
+                                        {{formErrors.user_name}}
+                                    </div>
                             </div>
                             <div class="detist-textfield col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                     <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email" placeholder="rachelm@gmail.com">
+                                    <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="rachelm@gmail.com">
+                                    <div *ngIf="formErrors.email">
+                                        {{formErrors.email}}
+                                    </div>
                             </div>
                             <div class="detist-textfield col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <label for="subject">Subject *</label>
-                                    <input type="text" class="form-control" id="subject">
+                                    <input type="text" class="form-control" id="subject" formControlName="subject" name="subject">
+                                    <div *ngIf="formErrors.subject">
+                                        {{formErrors.subject}}
+                                    </div>
                             </div>
                             <div class="detist-textfield col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <label for="description">Description *</label>
-                                    <label for="description" class="align-right">(0/1000)</label>
-                                    <textarea class="form-control" id="description"></textarea>
+                                    <label for="description" class="align-right">({{contactUsForm.get('description').value.length}}/1000)</label>
+                                    <textarea class="form-control" id="description" name="description" formControlName="description"></textarea>
+                                    <div *ngIf="formErrors.description">
+                                        {{formErrors.description}}
+                                    </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <div class="image-placeholder">
@@ -41,7 +57,30 @@
                             </div>
                 </div>                
             </div>
-            <div class="btn-submit">Submit</div>
-    </div>
+            <input class="btn-submit" type="submit" value="Submit" [disabled]="contactUsForm.invalid">
+    </form>
     
 </div>
+<div *ngIf="errorMessage" [ngClass]="errorMessageShow" #modal id="myModal" class="modal modal--error-services" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal--error">
+            <div class="modal-content">
+                <div class="modal-header c-all-scroll">
+                    <button type="button" class="close close-error-services-model" data-dismiss="modal" aria-label="Close" (click)="CloseModal()"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title" id="myModalLabel">Error {{errorMessage.code}} - {{errorMessage.message}}</p>
+                </div>
+                <div class="modal-body">
+                    {{errorMessage.description}}
+                </div>
+                <div class="modal-footer">
+                    <div class="row modal--error-services-btns">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <button class="mui-btn mui-btn--flat align-left modal--cancel" data-dismiss="modal" aria-label="Close" (click)="CloseModal()" type="button">Close</button>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <button class="mui-btn mui-btn--flat align-right modal--cancel" data-dismiss="modal" aria-label="Close" (click)="Login()" type="button">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

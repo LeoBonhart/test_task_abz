@@ -6,7 +6,7 @@
     background-image: url('~images/contactus/patern.jpg');
     background-position: 335px 120px; // =)
 
-    .contactus-panel{
+    .contactus-form{
         width: 760px;
         position: absolute;
         content:'';
@@ -64,7 +64,7 @@
             text-align: center;
             position: relative;
             vertical-align: middle;
-            @include my-v-align;
+            @include my-v-align;            
         }
     }    
 }
@@ -94,6 +94,27 @@
         &:-moz-placeholder{
             @include text($text-size, 1);
             color: $site-title-text-color;
+        }
+        &.ng-valid {
+            //$color: green;
+            //border-color: $color;
+            &+div {
+               // color: $color;
+            }
+        }
+        
+        &.ng-invalid:not(form) {
+            $color: red;
+            border-color: $color!important;
+            &+div {
+                position: absolute;
+                content: '';
+                bottom:0;
+                left:$padding;
+                width: auto;
+                height: auto;
+                color: $color!important;
+            }
         }
     } 
     input[type='email'],
@@ -144,4 +165,4 @@
         margin-bottom:7px; 
     }   
 }
-  
+

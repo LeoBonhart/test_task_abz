@@ -12,3 +12,6 @@ export { PeopleService } from './people/people.service';
 
 export { Navigation } from './navigation/navigation.model';
 export { NavigationPanelService } from './navigation/navigation.service';
+
+export { FormModel, DropDown, ContactUsError } from './contact-us/contact-us.model';
+export { ContactUsService } from './contact-us/contact-us.service';
