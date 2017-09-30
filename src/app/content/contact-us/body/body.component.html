@@ -13,9 +13,9 @@
                                 </div>
                             </div>
                             <div class="detist-textfield if-other col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngIf="enquiry&&contactUsForm.get('department').value==6">
-                                    <input type="text" class="form-control" id="other" name="other_department" formControlName="other_department" placeholder="Other" >
-                                    <div *ngIf="formErrors.other_department">
-                                        {{formErrors.other_department}}
+                                    <input type="text" class="form-control" id="enquiry_type" name="enquiry_type" formControlName="enquiry_type" placeholder="Other" >
+                                    <div *ngIf="formErrors.enquiry_type">
+                                        {{formErrors.enquiry_type}}
                                     </div>
                             </div>
                             <div class="detist-textfield col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -48,13 +48,26 @@
                                     </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div class="image-placeholder">
+                                <div class="image-placeholder c-pointer" (click)="inputFile.click()">
                                     <div class="text-image-placeholder">
                                             <p class="title">Add photo</p>
                                             <p class="description">Minimum size of 300x300 jpeg ipg png 5 MB</p>
+                                            <div *ngIf="formErrors.fileExt">{{formErrors.fileExt}}</div>
+                                            <div *ngIf="!formErrors.fileExt&&formErrors.fileSize">{{formErrors.fileSize}}</div>
+                                            <div *ngIf="!formErrors.fileSize&&formErrors.fileWH">{{formErrors.fileWH}}</div>
                                     </div>                                    
                                 </div>
+                                <div class="image-panel">
+                                    <div class="remove-btn"></div>
+                                    <div class="loaded-image">
+                                        <img [src]="lodedIMG" alt="image" *ngIf="lodedIMG">
+                                    </div> 
+                                </div>                                                              
                             </div>
+                            <input type="hidden" name="fileExt" formControlName="fileExt" class="hidden">
+                            <input type="hidden" name="fileSize" formControlName="fileSize" class="hidden">
+                            <input type="hidden" name="fileWH" formControlName="fileWH" class="hidden">
+                            <input #inputFile type="file" accept="image/*" [name]="fileImage" class="hidden" (change)="onChangeImage($event)">
                 </div>                
             </div>
             <input class="btn-submit" type="submit" value="Submit" [disabled]="contactUsForm.invalid">

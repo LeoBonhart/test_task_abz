@@ -3,7 +3,7 @@
 @import "modal.scss";
 @import "btns.scss";
 
-@mixin img-in-box($width, $br-radius, $mr) {
+@mixin img-in-box($width, $br-radius, $mr, $animation: true, $zume: true) {
     $wh: $width;
     width: $wh;
     height: $wh;
@@ -12,15 +12,28 @@
     display: inline-block;
     position: relative;
     margin-right: $mr;
-    transition: $transition;
-    &:hover{
-        border-radius:50%; 
-    }  
+    @if $animation == true { 
+        transition: $transition;    
+        &:hover{
+            border-radius:50%; 
+        }  
+    }
     img {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        @if $zume == true {
+            top: 50%;
+            left: 50%;            
+            transform: translate(-50%, -50%);
+        } @else {
+            top: 50%;
+            left: 50%;            
+            transform: translate(-50%, -50%);
+            min-height: $width;
+            min-width: $width;
+            height: $width;
+            width: auto;
+            object-fit:cover;
+        }        
     }
 }
 

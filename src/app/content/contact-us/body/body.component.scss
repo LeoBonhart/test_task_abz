@@ -29,11 +29,72 @@
             .marked {
                 color: rgb(193,193,193);
             }
-            .image-placeholder{
-                $wh: 130px;
+            $wh: 130px;
+            $br-radius: 4px;
+            .image-panel{
+                position: relative;
+                width: $wh;
+                height: $wh;
+                .remove-btn{
+                    opacity: 0;
+                    transition: opacity $t-sec; 
+                }
+                &:hover{
+                    .remove-btn{
+                        opacity: 1;
+                        $bg-color:rgb(217,82,82);
+                        $bg-shadow:rgba(32,35,41,0.15);
+                        $dia: 24px;
+                        position: absolute;
+                        content:'⨉';
+                        color:white;
+                        right: - ($dia / 2);
+                        top: - ($dia / 2);
+                        width: $dia;
+                        height: $dia;
+                        border: 0px solid transparent; //kkkkkombo
+                        border-radius: 50%;
+                        background: $bg-color;
+                        z-index: 20;
+                        background-image: linear-gradient(to bottom, $bg-shadow, transparent);
+                        transition: box-shadow  $t-sec, background $t-sec; 
+                        &:hover{
+                            cursor: pointer;
+                            box-shadow: $mui-b-shadow--hover;
+                            background: lighten(saturate($bg-color,20%), 5%);
+                        }
+                        @include  my-v-align;
+                        &:after{
+                            position: absolute;
+                            content:'⨉';
+                            color:white;
+                            line-height: 1;
+                            $f-size:18px;
+                            $kof: 3px;
+                            left: 0;
+                            top: 0;
+                            bottom: 0;
+                            right: 0;
+                            padding: {
+                                top:  $kof;
+                                bottom: $kof;
+                            };
+                            font-size: $f-size;
+                            text-align: center;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                }                
+                .loaded-image{
+                    @include img-in-box($wh, $br-radius, 0, false, false);
+                    border: $border-input;
+                }
+            }
+            .image-placeholder{                
                 width: $wh;
                 height: $wh; 
-                border-radius: 4px;
+                border-radius: $br-radius;
                 border: $border-input;
                 background-color: rgb(247,247,247) ;
                 .text-image-placeholder{
@@ -54,7 +115,7 @@
                         color: rgb(194, 194, 196);
                         font-weight: 500;
                     }
-                }
+                }                
             }
         }
         
@@ -165,4 +226,6 @@
         margin-bottom:7px; 
     }   
 }
-
+.hidden{
+    visibility: hidden;
+}

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { FormModel, DropDown, ContactUsService, ContactUsError} from './../../../shared/index';
+import { FormModel, DropDown, ContactUsService, ContactUsError, fileExtention, maxSizeMB, maxWidthHeigth } from './../../../shared/index';
 
 @Component({
     // moduleId: module.id.toString(),
@@ -14,16 +14,18 @@ export class BodyComponent {
     public errorMessageShow: string = 'show-modal';
     public model: FormModel = new FormModel();
     public contactUsForm: FormGroup;
-
+    public lodedIMG: string;
+    public fileImage: any;
     // Объект с ошибками, которые будут выведены в пользовательском интерфейсе
     formErrors = {
         user_name: '',
         department: '',
-        // enquiry_type: '',
-        other_department: '',
+        enquiry_type: '',
         description: '',
         subject: '',
-        // file: '',
+        fileExt: '',
+        fileSize: '',
+        fileWH: '',
         email: ''
     };
 
@@ -35,10 +37,7 @@ export class BodyComponent {
         department: {
             'required': 'Required field'
         },
-        // enquiry_type: {
-        //     'required': 'Required field'
-        // },
-        other_department: {
+        enquiry_type: {
             'required': 'Required field'
         },
         description: {
@@ -48,9 +47,15 @@ export class BodyComponent {
         subject: {
             'required': 'Required field'
         },
-        // file: {
-        //     'required': 'Required field'
-        // },
+        fileExt: {
+            'fileExtention': 'Only images are requered'
+        },
+        fileSize: {
+            'maxSizeMB': 'Maximum image size exceeded'
+        },
+        fileWH: {
+            'maxWidthHeigth': 'Maximum image size exceeded'
+        },
         email: {
             'required': 'Required field',
             'email': 'Invalid email address'
@@ -59,9 +64,9 @@ export class BodyComponent {
 
     onChangeDepartment(val: string) {
         if (val !== '6') {
-            this.contactUsForm.get('other_department').disable();
+            this.contactUsForm.get('enquiry_type').disable();
         } else {
-            this.contactUsForm.get('other_department').enable();
+            this.contactUsForm.get('enquiry_type').enable();
         };
     }
     onValueChanged(data?: any) {
@@ -71,11 +76,16 @@ export class BodyComponent {
             if (this.formErrors.hasOwnProperty(field) && this.validationMessages.hasOwnProperty(field)) {
                 this.formErrors[field] = '';
                 let control = form.get(field);
+                console.log(field, control.dirty, !control.valid, control && control.dirty && !control.valid )
                 if (control && control.dirty && !control.valid) {
                     let message = this.validationMessages[field];
+                    console.log(field, message)
                     for (let key in control.errors) {
                         if (message.hasOwnProperty(key)) {
+                            console.log(field, key)
                             this.formErrors[field] += message[key] + ' ';
+                            if (field === 'fileExt')
+                            console.log(this.formErrors[field]);
                         }
                     }
                 }
@@ -84,8 +94,8 @@ export class BodyComponent {
     }
 
     ngOnInit() {
-        this.getDrpDown();
         this.setValidation();
+        this.getDrpDown();
     }
     private setValidation() {
         this.contactUsForm = this.fb.group({
@@ -96,10 +106,7 @@ export class BodyComponent {
                 Validators.required,
                 Validators.pattern('\\d+')
             ]],
-            // enquiry_type: [this.model.enquiry_type, [
-            //     Validators.required
-            // ]],
-            other_department: [this.model.other_department, [
+            enquiry_type: [this.model.enquiry_type, [
                 Validators.required
             ]],
             description: [this.model.description, [
@@ -109,15 +116,22 @@ export class BodyComponent {
             subject: [this.model.subject, [
                 Validators.required
             ]],
-            // file: [this.model.file, [
-            //     Validators.required
-            // ]],
+            // к сожалению красиво не получилось, FormControl не поддерживает type'file', пришлось хайден инпутами
+            fileExt: ['', [
+                fileExtention('jpeg', 'jpg', 'gif', 'png'),
+            ]],
+            fileSize: ['', [
+                maxSizeMB(5)
+            ]],
+            fileWH: ['', [
+                maxWidthHeigth(300, 300)
+            ]],
             email: [this.model.email, [
                 Validators.required,
                 Validators.email
             ]]
         });
-        this.contactUsForm.get('other_department').disable();
+        this.contactUsForm.get('enquiry_type').disable();
         this.contactUsForm.valueChanges.subscribe(data => this.onValueChanged(data));
     }
     private getDrpDown() {
@@ -138,13 +152,14 @@ export class BodyComponent {
     private ShowModal() {
         this.errorMessageShow = 'show-modal';
     }
-
+    onChangeImage(event: any) {
+        this.GetImage(event.target);
+    }
     onSubmit(form: any) {
         // this.postFormData(form);
         let obj: FormModel = new FormModel();
         obj.user_name =  form.value.user_name;
         obj.subject = form.value.subject;
-        obj.other_department = form.value.other_department;
         obj.file = form.value.file;
         obj.enquiry_type = form.value.enquiry_type;
         obj.email = form.value.email;
@@ -153,8 +168,61 @@ export class BodyComponent {
         console.log(obj);
     }
 
-    constructor(private fb: FormBuilder, private service: ContactUsService) {};
+    GetImage(inputFile: any) {
+        let image: File = inputFile.files[0];
+        let ext = /[^.]+$/.exec(image.name)[0];
+        let fSize = this.contactUsForm.get('fileSize');
+        let fExt = this.contactUsForm.get('fileExt');
+        let fWH = this.contactUsForm.get('fileWH');
+        fSize.markAsDirty();
+        fExt.markAsDirty();
+        fWH.markAsDirty();
+        fSize.setValue(image.size);
+        fExt.setValue(ext);
+        fWH.setValue('300,300');
+        if (fSize.valid && fExt.valid && fWH.valid) {
+            let reader = new FileReader();
+            reader.onload = (e: FileReaderEvent) => {
+                this.lodedIMG = e.target.result;
+            };
+            reader.readAsDataURL(image);
+        } else {
+            this.fileImage = '';
+            this.lodedIMG = '';
+        }
+    }
+    onLoadCallback(e: Event) {
+        this.lodedIMG = e.target['result'];
+    }
+    checkSize(elem: File, predicate: number) {
+        let fileSize = elem.size;
+        let maxSize: number = predicate * 1024 * 1024;
+        if (fileSize > maxSize) {
+            this.setManualValidationErrorForInputFile('file', 'maxSizeMB');
+        } else {
+            this.clearManualValidationErrorForInputFile('file');
+        }
+    }
+    setManualValidationErrorForInputFile(field: string, key: string) {
+        this.formErrors[field] = '';
+        let message = this.validationMessages[field];
+        this.formErrors[field] += message[key] + ' ';
+    }
+    clearManualValidationErrorForInputFile(field: string) {
+        this.formErrors[field] = undefined;
+    }
+    constructor(
+        private fb: FormBuilder,
+        private service: ContactUsService
+    ) {};
 }
-// uploaded image should not exceed 300x300 pixels;
-// validate that the image was chosen and not an arbitrary file;
-// maximum size of the uploaded image should not exceed 5MB;
+
+// интерфейсы для корректной работы FileReader
+interface FileReaderEventTarget extends EventTarget {
+    result: string
+}
+
+interface FileReaderEvent extends Event {
+    target: FileReaderEventTarget;
+    getMessage(): string;
+}

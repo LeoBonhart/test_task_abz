@@ -1,4 +1,5 @@
-$transition: all 0.5s;
+$t-sec:0.5s;
+$transition: all $t-sec;
 $site-font: "Myriad Pro",
 Myriad,
 "Liberation Sans",

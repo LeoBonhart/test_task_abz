@@ -1,16 +1,14 @@
 
 export class FormModel {
     public department: number;
-    public other_department: string;
     public description: string;
     public email: string;
     public enquiry_type: string;
-    public file: string;
+    public file: any;
     public subject: string;
     public user_name: string;
     constructor() {
         this.department = 0;
-        this.other_department = '';
         this.description = '';
         this.email = '';
         this.enquiry_type = '';

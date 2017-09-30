@@ -15,3 +15,4 @@ export { NavigationPanelService } from './navigation/navigation.service';
 
 export { FormModel, DropDown, ContactUsError } from './contact-us/contact-us.model';
 export { ContactUsService } from './contact-us/contact-us.service';
+export { fileExtention, maxSizeMB, maxWidthHeigth } from './contact-us/image-validation';
