@@ -1,6 +1,36 @@
+@font-face {
+    font-family: "Proxima Nova Semibold";
+    src: url("~fonts/proxima-nova-semibold.otf") format("opentype");
+    
+    font-style: normal;
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Proxima Nova Bold";
+    src: url("~fonts/proxima-nova-bold.otf") format("opentype");
+    
+    font-style: normal;
+    font-weight: bolder;
+}
+@font-face {
+    font-family: "Proxima Nova Thin";
+    src: url("~fonts/proxima-nova-thin.otf") format("opentype");
+    
+    font-style: normal;
+    font-weight: lighter;
+}
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("~fonts/proxima-nova-regular.otf") format("opentype");
+    
+    font-style: normal;
+    font-weight: normal;
+}
+
 $t-sec:0.5s;
 $transition: all $t-sec;
-$site-font: "Myriad Pro",
+
+$other:"Myriad Pro",
 Myriad,
 "Liberation Sans",
 "Nimbus Sans L",
@@ -8,5 +38,11 @@ Myriad,
 Helvetica,
 Arial,
 sans-serif;
+
+$site-font: "Proxima Nova", $other;
+$site-font-thin: "Proxima Nova Thin", $other;
+$site-font-bolder: "Proxima Nova Bold", $other;
+$site-font-bold: "Proxima Nova Semibold", $other;
+
 $site-font-size:16px;
 $footer-height:73px;

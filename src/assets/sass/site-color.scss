@@ -2,6 +2,7 @@ $site-green-color:rgb(135, 180, 72);
 $site-text-color:rgb(28, 37, 52);
 $site-title-text-color:rgb(124, 134, 149);
 $separator-color:rgb(224, 226, 230);
+$footer-color: rgb(183,191,205);
 
 $color-left-bar-links: rgb(183, 191, 205);
 
@@ -21,4 +22,6 @@ $mui-b-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
 $mui-b-shadow-push: 0 2px 2px 0 rgba(0, 0, 0, 0.16) inset, 0 0px 2px 0 rgba(0, 0, 0, 0.12) inset;
 $mui-b-shadow--hover: 0 0px 4px rgba(0, 0, 0, 0.12), 1px 3px 4px rgba(0, 0, 0, 0.2);
 
+$box-border:1px solid $services-conteiner-border-color;
 $border-input:1px solid rgb(200,205,213);
+$validation-error-color:rgb(251,99,99);

@@ -1,10 +1,11 @@
 @import "~sass/mixins.scss";
+@include get-modal('error', 'contactus',250px,600px);
 
 .contactus-body{
     min-height: 816px;
     height: 816px;
     background-image: url('~images/contactus/patern.jpg');
-    background-position: 335px 120px; // =)
+    background-position: 337px 118px; // =)
 
     .contactus-form{
         width: 760px;
@@ -24,24 +25,35 @@
             height: auto;// 745px;
             background-color: white; 
             border-radius: 5px;
-            padding: 20px;
+            padding: {
+                top:18px;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+            };
             
             .marked {
+                @include text(16px, 1); 
                 color: rgb(193,193,193);
+                margin-bottom: 13px;
             }
+        // #region настройка области загрузки изображеия
             $wh: 130px;
             $br-radius: 4px;
+            $m-top: 3px;
+
             .image-panel{
                 position: relative;
                 width: $wh;
                 height: $wh;
-                .remove-btn{
-                    opacity: 0;
-                    transition: opacity $t-sec; 
-                }
-                &:hover{
+                margin-top: $m-top;
+                // .remove-btn{
+                //     opacity: 0;
+                //     transition: opacity $t-sec; 
+                // }
+                // &:hover{
                     .remove-btn{
-                        opacity: 1;
+                        // opacity: 1;
                         $bg-color:rgb(217,82,82);
                         $bg-shadow:rgba(32,35,41,0.15);
                         $dia: 24px;
@@ -85,38 +97,54 @@
                             vertical-align: middle;
                         }
                     }
-                }                
+                // }                
                 .loaded-image{
                     @include img-in-box($wh, $br-radius, 0, false, false);
                     border: $border-input;
                 }
             }
+
             .image-placeholder{                
                 width: $wh;
                 height: $wh; 
                 border-radius: $br-radius;
                 border: $border-input;
-                background-color: rgb(247,247,247) ;
+                background-color: rgb(247,247,247);
+                margin-top: $m-top;
+                padding: {
+                    top:5px;
+                    left: 15px;
+                    right: 15px;
+                    bottom: 5px;
+                };
+                
+                position: relative;
+                display: inline-flex;
                 .text-image-placeholder{
-                    text-align: center;
-                    padding: 18px;
-
+                    text-align: center;                    
+                    margin: {
+                        top:auto;
+                        bottom: auto;
+                    }
                     .title{
                         @include text(16px, 1); 
                         color: rgb(124, 134, 149);
-                        font-weight: 600;
-                        margin: {
-                            top:15px;
-                            bottom:7px;
-                        } 
+                        margin-bottom:7px;
                     }
                     .description{
                         @include text(12px, 1.2); 
                         color: rgb(194, 194, 196);
-                        font-weight: 500;
+                        padding: 0;
+                        margin: 0;                        
+                    }
+                    .error-validation{
+                        color: $validation-error-color;
+                        @include text(12px, 1.2); 
                     }
                 }                
             }
+        // #endregion
+
         }
         
         .btn-submit{
@@ -130,102 +158,117 @@
     }    
 }
 
-.detist-textfield{
-    $padding:20px;
-    $margin-b:20px;
-    $text-size:16px;
-    $input-h:52px;
-    $txta-mh:152px;
-    $border-r:5px;
+// #region настройка формы
+    .detist-textfield{
+        $padding:20px;
+        $margin-b:16px;
+        $text-size:16px;
+        $input-h:52px;
+        $txta-mh:152px;
+        $border-r:5px;
 
-    input[type='text']{
-        width: 100%;
-        height: $input-h;
-        border-radius: $border-r;
-        border: $border-input;
-        margin-bottom: $margin-b;
-        outline: none;
-        padding: $padding;
-        @include text($text-size, 1); 
-        color: $site-text-color;
+        input[type='text']{
+            width: 100%;
+            height: $input-h;
+            border-radius: $border-r;
+            border: $border-input;
+            margin-bottom: $margin-b;
+            outline: none;
+            padding: $padding;
+            @include text($text-size, 1); 
+            color: $site-text-color;
 
-        &::-webkit-input-placeholder,
-        &::-moz-placeholder,
-        &:-ms-input-placeholder,   
-        &:-moz-placeholder{
-            @include text($text-size, 1);
-            color: $site-title-text-color;
-        }
-        &.ng-valid {
-            //$color: green;
-            //border-color: $color;
-            &+div {
-               // color: $color;
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,   
+            &:-moz-placeholder{
+                @include text($text-size, 1);
+                color: $site-title-text-color;
             }
+            &.ng-valid {
+                //$color: green;
+                //border-color: $color;
+                &+div {
+                // color: $color;
+                }
+            }
+            
+            &.ng-invalid:not(form) {
+                $color: red;
+                border-color: $color!important;
+                &+div {
+                    position: absolute;
+                    content: '';
+                    bottom:0;
+                    left:$padding;
+                    width: auto;
+                    height: auto;
+                    color: $color!important;
+                }
+            }
+            &#enquiry_type{
+                margin-top: 20px - $margin-b;
+            }
+        } 
+        input[type='email'],
+        input[type='password']{
+            @extend input[type='text'];
         }
-        
-        &.ng-invalid:not(form) {
-            $color: red;
-            border-color: $color!important;
-            &+div {
+        &.drpdwn{
+            position: relative;
+            &:after{
+                content: '';
+                position: absolute;
+                right: $padding + 10px;
+                bottom: $margin-b + $padding;
+                pointer-events: none;
+                width: 0;
+                height: 0;
+                border: 10px solid transparent; 
+                border-top-color: $site-title-text-color;  
+                border-bottom: 0;
+            }
+            &.open:after{
+                bottom: $margin-b + $padding + 3px;
+                transform: rotate(180deg);
+            }
+            select{
+                appearance: none;
+            }        
+        } 
+        select{
+            @extend input[type='text'];
+            padding: {
+                top:0;
+                bottom: 0;
+                left: $padding;
+                right:$padding;
+            } 
+            option.option-text{
+                @include text($text-size, 1, bold); 
+                color: $site-text-color;
+            }
+        } 
+        textarea{
+            @extend input[type='text'];
+            width: 100%;
+            min-height: $txta-mh;
+            border-radius: $border-r;
+            border: $border-input;
+        }
+        label[for]{
+            @include text($text-size, 10px); 
+            color: $site-text-color;
+            margin-bottom:10px; 
+            &.counter{
                 position: absolute;
                 content: '';
-                bottom:0;
-                left:$padding;
+                right: $padding - 3px;
+                top: 5px;
                 width: auto;
                 height: auto;
-                color: $color!important;
             }
-        }
-    } 
-    input[type='email'],
-    input[type='password']{
-        @extend input[type='text'];
+        }   
     }
-    &.drpdwn{
-        position: relative;
-        &:after{
-            content: '';
-            position: absolute;
-            right: $padding + 10px;
-            bottom: $margin-b + $padding;
-            pointer-events: none;
-            width: 0;
-            height: 0;
-            border: 10px solid transparent; 
-            border-top-color: $site-title-text-color;  
-            border-bottom: 0;
-        }
-        &.open:after{
-            bottom: $margin-b + $padding + 3px;
-            transform: rotate(180deg);
-        }
-        select{
-            appearance: none;
-        }        
-    } 
-    select{
-        @extend input[type='text'];
-        padding: {
-            top:0;
-            bottom: 0;
-            left: $padding;
-            right:$padding;
-        } 
-    } 
-    textarea{
-        @extend input[type='text'];
-        width: 100%;
-        min-height: $txta-mh;
-        border-radius: $border-r;
-        border: $border-input;
-    }
-    label[for]{
-        @include text($text-size, 1); 
-        color: $site-text-color;
-        margin-bottom:7px; 
-    }   
-}
-.hidden{
-    visibility: hidden;
-}
+    
+// #endregion

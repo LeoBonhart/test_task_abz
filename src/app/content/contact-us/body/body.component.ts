@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { FormModel, DropDown, ContactUsService, ContactUsError, fileExtention, maxSizeMB, maxWidthHeigth } from './../../../shared/index';
-
+let _URL = window.URL;
 @Component({
     // moduleId: module.id.toString(),
     selector: 'body',
@@ -15,7 +15,9 @@ export class BodyComponent {
     public model: FormModel = new FormModel();
     public contactUsForm: FormGroup;
     public lodedIMG: string;
-    public fileImage: any;
+    public fileImage: string;
+
+// #region свойства и методы отвечающие за работу с формой и валидацию
     // Объект с ошибками, которые будут выведены в пользовательском интерфейсе
     formErrors = {
         user_name: '',
@@ -76,26 +78,16 @@ export class BodyComponent {
             if (this.formErrors.hasOwnProperty(field) && this.validationMessages.hasOwnProperty(field)) {
                 this.formErrors[field] = '';
                 let control = form.get(field);
-                console.log(field, control.dirty, !control.valid, control && control.dirty && !control.valid )
                 if (control && control.dirty && !control.valid) {
                     let message = this.validationMessages[field];
-                    console.log(field, message)
                     for (let key in control.errors) {
                         if (message.hasOwnProperty(key)) {
-                            console.log(field, key)
                             this.formErrors[field] += message[key] + ' ';
-                            if (field === 'fileExt')
-                            console.log(this.formErrors[field]);
                         }
                     }
                 }
             }
         }
-    }
-
-    ngOnInit() {
-        this.setValidation();
-        this.getDrpDown();
     }
     private setValidation() {
         this.contactUsForm = this.fb.group({
@@ -126,14 +118,34 @@ export class BodyComponent {
             fileWH: ['', [
                 maxWidthHeigth(300, 300)
             ]],
+            fileImage: [this.fileImage],
             email: [this.model.email, [
                 Validators.required,
                 Validators.email
             ]]
         });
         this.contactUsForm.get('enquiry_type').disable();
+        this.offValidationFile();
         this.contactUsForm.valueChanges.subscribe(data => this.onValueChanged(data));
     }
+    setValidationFile() {
+        this.contactUsForm.get('fileExt').enable();
+        this.contactUsForm.get('fileSize').enable();
+        this.contactUsForm.get('fileWH').enable();
+    }
+    offValidationFile() {
+        this.contactUsForm.get('fileExt').disable();
+        this.contactUsForm.get('fileSize').disable();
+        this.contactUsForm.get('fileWH').disable();
+    }
+// #endregion
+
+    ngOnInit() {
+        this.setValidation();
+        this.getDrpDown();
+    }
+
+// #region методы работы с API
     private getDrpDown() {
         this.service.getAPI().subscribe(
             data => this.enquiry = data,
@@ -143,31 +155,64 @@ export class BodyComponent {
     private postFormData(formData: any) {
         this.service.postAPI(formData).subscribe(
             data => {this.errorMessage.message = data; console.log('data:', data)},
-            error => {this.errorMessage = error; console.log('data:', error)}
+            error => {this.errorMessage = error; console.log('data:', error); this.ShowModal()}
         );
     }
+// #endregion
+
     private CloseModal() {
         this.errorMessageShow = '';
     }
     private ShowModal() {
         this.errorMessageShow = 'show-modal';
     }
-    onChangeImage(event: any) {
-        this.GetImage(event.target);
+
+    onSubmit(form: any, image: any) {
+        if (image.files[0]) {
+            // let reader = new FileReader();
+            // reader.readAsDataURL(image.files[0]);
+            // reader.onload = (e: FileReaderEvent) => {
+            //     this.dataHelper( form, reader.result );
+            // };
+            this.fillFormData(form, image.files[0] );
+        } else {
+            this.fillFormData(form, '' );
+            // this.dataHelper(form, '' );
+        }
     }
-    onSubmit(form: any) {
-        // this.postFormData(form);
+
+    private dataHelper(form: any, image: any ) {
         let obj: FormModel = new FormModel();
         obj.user_name =  form.value.user_name;
         obj.subject = form.value.subject;
-        obj.file = form.value.file;
+        obj.file = image;
         obj.enquiry_type = form.value.enquiry_type;
         obj.email = form.value.email;
         obj.description = form.value.description;
         obj.department = form.value.department;
-        console.log(obj);
+        this.postFormData(obj);
     }
 
+    private fillFormData(form: any, image: any ) {
+        let formData: FormData = new FormData();
+        formData.append('user_name', form.value.user_name);
+        formData.append('subject', form.value.subject);
+        formData.append('file', image);
+        formData.append('enquiry_type', form.value.enquiry_type === undefined ? '' : form.value.enquiry_type);
+        formData.append('email', form.value.email);
+        formData.append('description', form.value.description);
+        formData.append('department', form.value.department);
+        // for (let pair in  new FormModel()) {
+        //     console.log(pair + ' - ' + formData.get(pair));
+        // }
+        this.postFormData(formData);
+    }
+
+// #region методы отвечающие за обработку изображения
+    onChangeImage(event: any) {
+        this.setValidationFile();
+        this.GetImage(event.target);
+    }
     GetImage(inputFile: any) {
         let image: File = inputFile.files[0];
         let ext = /[^.]+$/.exec(image.name)[0];
@@ -179,50 +224,48 @@ export class BodyComponent {
         fWH.markAsDirty();
         fSize.setValue(image.size);
         fExt.setValue(ext);
-        fWH.setValue('300,300');
-        if (fSize.valid && fExt.valid && fWH.valid) {
-            let reader = new FileReader();
-            reader.onload = (e: FileReaderEvent) => {
-                this.lodedIMG = e.target.result;
+    // #region логика работы с изображением
+        if (fSize.valid && fExt.valid) { // если размер файла и его расширение валидно, разрешается манипуляция с изображениями
+            let img: HTMLImageElement;
+            img = new Image();
+            img.onload = () => {
+                let wh = img.width + ',' + img.height;
+                fWH.setValue(wh);
+                if (fWH.valid) { // если размер (высоты и ширины) валидный, то прорисовка разрешается
+                        let reader = new FileReader();
+                        reader.onload = (e: FileReaderEvent) => {
+                            this.lodedIMG = e.target.result;
+                        };
+                        reader.readAsDataURL(image);
+                };
             };
-            reader.readAsDataURL(image);
+            img.src = _URL.createObjectURL(image);
         } else {
             this.fileImage = '';
             this.lodedIMG = '';
         }
+    // #endregion
     }
-    onLoadCallback(e: Event) {
-        this.lodedIMG = e.target['result'];
+    removeImage(inputFile: any) {
+        this.offValidationFile();
+        inputFile.value = '';
+        this.lodedIMG = '';
     }
-    checkSize(elem: File, predicate: number) {
-        let fileSize = elem.size;
-        let maxSize: number = predicate * 1024 * 1024;
-        if (fileSize > maxSize) {
-            this.setManualValidationErrorForInputFile('file', 'maxSizeMB');
-        } else {
-            this.clearManualValidationErrorForInputFile('file');
-        }
-    }
-    setManualValidationErrorForInputFile(field: string, key: string) {
-        this.formErrors[field] = '';
-        let message = this.validationMessages[field];
-        this.formErrors[field] += message[key] + ' ';
-    }
-    clearManualValidationErrorForInputFile(field: string) {
-        this.formErrors[field] = undefined;
-    }
+// #endregion
+
     constructor(
         private fb: FormBuilder,
         private service: ContactUsService
     ) {};
 }
 
-// интерфейсы для корректной работы FileReader
-interface FileReaderEventTarget extends EventTarget {
-    result: string
-}
+// #region интерфейсы для корректной работы FileReader
+    interface FileReaderEventTarget extends EventTarget {
+        result: string
+    }
 
-interface FileReaderEvent extends Event {
-    target: FileReaderEventTarget;
-    getMessage(): string;
-}
+    interface FileReaderEvent extends Event {
+        target: FileReaderEventTarget;
+        getMessage(): string;
+    }
+// #endregion

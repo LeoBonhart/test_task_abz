@@ -1,11 +1,13 @@
 @import "~sass/mixins.scss";
 .people {
-    height: auto;    
+    height: auto;   
+    padding-bottom:4px;
+
     .people-title {
         @include title(13px,10px);
         width: 100%;
         margin-top: 10px;
-        margin-bottom: 17px;
+        margin-bottom: 18px;
         .see-all {
             @include sidebar-link(13px,10px);
             float: right;   
@@ -16,9 +18,9 @@
         $width:80px;
         $mr:10px;
         height: 100px;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
         .persone-title {
-            @include sidebar-link(15px, 15px);
+            @include sidebar-link(16px, 1);
             @include  textOverflow();
             display: block;
             margin-bottom: 7px;
@@ -39,7 +41,7 @@
                 @include verticalTextOverflow(2);
                 max-height: 32px;                
                 display: block;
-                margin-bottom: 5px;                 
+                margin-bottom: 7px;                 
             }
             .location {
                 @include title(14px, 16px);

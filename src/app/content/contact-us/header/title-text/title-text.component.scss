@@ -1,12 +1,12 @@
 @import "~sass/mixins.scss";
 
     h1{
-        @include text( 42px ,0.625); 
-        margin-bottom: 15px;
+        @include text( 48px ,0.625, lighter); 
+        margin-bottom: 19px;
     }
     p{
-        @include text( 18px ,1.5);
-        width: 466px;
+        @include text( 20px ,1.5, lighter);
+        width: 480px;
         margin-left: auto;
         margin-right: auto;
     }

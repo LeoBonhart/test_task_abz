@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./links.component.scss']
 })
 export class LinksComponent {
+    private copyright: string = 'Denteez Copyright ' + this.getCurrentYear();
+
+    private getCurrentYear (date: Date = new Date()): string {
+        return date.getFullYear().toString();
+    }
 }

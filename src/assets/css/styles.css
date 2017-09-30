@@ -13,6 +13,10 @@ body {
 .align-right{
     float: right;
 }
+
+
+
+
 /* cursor */
 .c-auto:hover {         cursor: auto           !important; }
 .c-default:hover {      cursor: default        !important; }/*Стандартная стрелка*/

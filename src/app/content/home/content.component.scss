@@ -1,11 +1,17 @@
 @import "~sass/mixins.scss";
 .content {
     min-width: 970px;
-    margin-top:10px; 
+    // width: 970px; // для проверки с шаблоном из фотошопа PerfectPixel
     position: relative;
     transition: margin 1s;
     @media (min-width: 1200px) {
-        margin-left: 204px;
+        margin-left: 189px;
         margin-right: 222px;
+    }
+    .right-margin{
+        margin-top: 10px; 
+    }
+    .center-margin{
+        margin-top: 12px; 
     }
 }

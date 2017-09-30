@@ -24,6 +24,7 @@ module.exports = webpackMerge(
         images: helpers.root('src','assets','images'),
         sass: helpers.root('src','assets','sass'),
         css: helpers.root('src','assets','css'),
+        fonts: helpers.root('src','assets','fonts'),
         shared: helpers.root('src','app','shared')
       }
     },

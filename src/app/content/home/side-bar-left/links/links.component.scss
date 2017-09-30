@@ -3,13 +3,13 @@
     .copyright {
         @include lft-sdbr-linkstext(12px, 10px);
         display: block;
-        margin-top: 17px;
-        margin-bottom: 16px;
+        margin-top: 19px;
+        margin-bottom: 11px;
     }
     .terms {
         @include lft-sdbr-linkstext(12px, 10px);
         display: inline-block;
-        margin-right: 26px;
+        margin-right: 17px;
     }
     .privacy {
         @include lft-sdbr-linkstext(12px, 10px);
@@ -19,6 +19,5 @@
         @include lft-sdbr-linkstext(12px, 10px);
         display: block;
         margin-top: 17px;
-        margin-bottom: 16px; 
     }
 }

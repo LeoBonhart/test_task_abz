@@ -1,12 +1,12 @@
 <div class="contactus-body">
-    <form class="contactus-form" [formGroup]="contactUsForm" (ngSubmit)="onSubmit(contactUsForm)" novalidate>
+    <form class="contactus-form" [formGroup]="contactUsForm" (ngSubmit)="onSubmit(contactUsForm, inputFile)" novalidate>
             <div class="form-panel">
                 <p class="marked">Fields marked “*” are required</p>
                 <div class="row">
                             <div class="drpdwn detist-textfield col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngIf="enquiry">
-                                <label for="department">Enquery *</label>
+                                <label for="department">Enquiry Type *</label>
                                 <select id="department" name="department" formControlName="department" (change)="onChangeDepartment(contactUsForm.get('department').value)">
-                                    <option *ngFor="let item of enquiry" [value]="item.id">{{item.name}}</option>
+                                    <option class="option-text" *ngFor="let item of enquiry" [value]="item.id">{{item.name}}</option>
                                 </select>
                                 <div *ngIf="formErrors.enquery">
                                         {{formErrors.department}}
@@ -41,57 +41,75 @@
                             </div>
                             <div class="detist-textfield col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <label for="description">Description *</label>
-                                    <label for="description" class="align-right">({{contactUsForm.get('description').value.length}}/1000)</label>
+                                    <label for="description" class="counter">({{contactUsForm.get('description').value.length}}/1000)</label>
                                     <textarea class="form-control" id="description" name="description" formControlName="description"></textarea>
                                     <div *ngIf="formErrors.description">
                                         {{formErrors.description}}
                                     </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div class="image-placeholder c-pointer" (click)="inputFile.click()">
+                                <div class="image-placeholder c-pointer" (click)="inputFile.click()" *ngIf="!lodedIMG">
                                     <div class="text-image-placeholder">
                                             <p class="title">Add photo</p>
                                             <p class="description">Minimum size of 300x300 jpeg ipg png 5 MB</p>
-                                            <div *ngIf="formErrors.fileExt">{{formErrors.fileExt}}</div>
-                                            <div *ngIf="!formErrors.fileExt&&formErrors.fileSize">{{formErrors.fileSize}}</div>
-                                            <div *ngIf="!formErrors.fileSize&&formErrors.fileWH">{{formErrors.fileWH}}</div>
+                                            <div class="error-validation" *ngIf="formErrors.fileExt">{{formErrors.fileExt}}</div>
+                                            <div class="error-validation" *ngIf="!formErrors.fileExt&&formErrors.fileSize">{{formErrors.fileSize}}</div>
+                                            <div class="error-validation" *ngIf="!formErrors.fileSize&&formErrors.fileWH">{{formErrors.fileWH}}</div>
                                     </div>                                    
                                 </div>
-                                <div class="image-panel">
-                                    <div class="remove-btn"></div>
+                                <div class="image-panel" *ngIf="lodedIMG">
+                                    <div class="remove-btn" (click)="removeImage(inputFile)"></div>
                                     <div class="loaded-image">
-                                        <img [src]="lodedIMG" alt="image" *ngIf="lodedIMG">
+                                        <img [src]="lodedIMG" alt="image">
                                     </div> 
                                 </div>                                                              
                             </div>
                             <input type="hidden" name="fileExt" formControlName="fileExt" class="hidden">
                             <input type="hidden" name="fileSize" formControlName="fileSize" class="hidden">
                             <input type="hidden" name="fileWH" formControlName="fileWH" class="hidden">
-                            <input #inputFile type="file" accept="image/*" [name]="fileImage" class="hidden" (change)="onChangeImage($event)">
+                            <input #inputFile type="file" accept="image/*" name="fileImage" formControlName="fileImage" style="display:none" (change)="onChangeImage($event)">
                 </div>                
             </div>
             <input class="btn-submit" type="submit" value="Submit" [disabled]="contactUsForm.invalid">
     </form>
     
 </div>
-<div *ngIf="errorMessage" [ngClass]="errorMessageShow" #modal id="myModal" class="modal modal--error-services" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div *ngIf="errorMessage" [ngClass]="errorMessageShow" #modal id="myModal" class="modal modal--error-contactus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal--error">
             <div class="modal-content">
                 <div class="modal-header c-all-scroll">
-                    <button type="button" class="close close-error-services-model" data-dismiss="modal" aria-label="Close" (click)="CloseModal()"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close close-error-contactus-model" data-dismiss="modal" aria-label="Close" (click)="CloseModal()"><span aria-hidden="true">&times;</span></button>
                     <p class="modal-title" id="myModalLabel">Error {{errorMessage.code}} - {{errorMessage.message}}</p>
                 </div>
                 <div class="modal-body">
                     {{errorMessage.description}}
+                    <div *ngIf="errorMessage.details">
+                        <div class="row">
+                        
+                            <div class="col-4">
+                                <b>Fiels:</b>
+                            </div>
+                            <div class="col-8">
+                                <b>Description:</b>
+                            </div>
+                            
+                        </div>
+                        <div *ngFor="let detail of errorMessage.details" class="row">                        
+                            <div class="col-4">
+                                {{detail.field}}
+                            </div>
+                            <div class="col-8">
+                                {{detail.description}}
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="row modal--error-services-btns">
+                    <div class="row modal--error-contactus-btns">
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <button class="mui-btn mui-btn--flat align-left modal--cancel" data-dismiss="modal" aria-label="Close" (click)="CloseModal()" type="button">Close</button>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                            <button class="mui-btn mui-btn--flat align-right modal--cancel" data-dismiss="modal" aria-label="Close" (click)="Login()" type="button">Login</button>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

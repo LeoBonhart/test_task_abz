@@ -1,6 +1,6 @@
 @import "site-color.scss";
 
-@mixin btn-denteez($width, $height, $br-radius: 5px, $tx-size:13px, $tx-line:10px){
+@mixin btn-denteez($width, $height, $br-radius: 5px, $tx-size:14px, $tx-line:10px){
     width: $width;
     height: $height;
     background-color: $btn-add-color;

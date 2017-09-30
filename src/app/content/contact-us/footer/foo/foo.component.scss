@@ -4,9 +4,11 @@
     position: relative;
     // пришлось такое делать, потому что элемент <foo> как бы не имеет атрибута высоты. И поэтому нельзя было поставить 100%
     height: $footer-height;
+    padding-top:6px;
+
     .foo-text{
-        color: $site-title-text-color;
-        @include text(12px ,3.5); 
+        color: $footer-color;
+        @include text(12px ,1 ); 
         text-align: left;
         height: 100%;
         @include  my-v-align;
@@ -20,7 +22,7 @@
 
         .foo-text{
             display: inline-block;
-            margin-right:25px;             
+            margin-left:25px;             
         }
     }
 }

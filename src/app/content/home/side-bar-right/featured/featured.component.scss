@@ -2,12 +2,12 @@
 .featured {
         height: auto;    
         .featured-title {
-            @include title(13px,10px);
+            @include title(14px,10px);
             width: 100%;
             margin-top: 20px;
-            margin-bottom: 17px;
+            margin-bottom: 20px;
             .see-all {
-                @include sidebar-link(13px,10px);
+                @include sidebar-link(14px,10px);
                 float: right;   
                 font-weight: 600;         
             }
@@ -16,11 +16,11 @@
             $width:80px;
             $mr:10px;
             height: 100px;
-            margin-bottom: 20px;
+            margin-bottom: 21px;
             .product-title {
-                @include sidebar-link(15px, 10px);
+                @include sidebar-link(16px, 10px);
                 display: block;
-                margin-bottom: 7px;
+                margin-bottom: 10px;
                 font-weight: 600;  
             }
             .product-image {

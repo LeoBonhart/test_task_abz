@@ -3,13 +3,14 @@
 
 .add-service {
     @include btn-denteez(145px, 30px);
+    margin-right: 1px; // мне не нарвится такой кодинг, но что поделать если нужно постраивать под шаблон PSD
 }
 .title-center-main{
-    @include text(29px,29px);
+    @include text(30px,1);
 }
 .services-conteiner{
     margin-top:20px; 
-    border: 1px solid $services-conteiner-border-color;
+    border: $box-border;
     border-radius:5px; 
     background: $services-conteiner-bg-color;
     padding-bottom:15px; 
@@ -20,22 +21,25 @@ $square:140px;
     .service{
         width: $square;
         height: $square;
-        border: 1px solid $services-service-border-color;
+        border: $box-border;
         margin-top: 15px;
         background-color:$services-service-bg-color; 
         transition: $transition;
+        position: relative;
+        display: flex;
         .service-ico{
-            $wh:138px;
+            margin: auto;
+            $wh: 120px;
             height: $wh;
             width: $wh;
         }
     }
     .service-text{
         color: $site-text-color;
-        @include text(12.5px,15px);
+        @include text(13px,15px);
         text-align: center;
         width: $square - 20px;
-        margin-top: 17px;
+        margin-top: 16px;
         margin-left:auto;
         margin-right: auto; 
         transition: $transition;

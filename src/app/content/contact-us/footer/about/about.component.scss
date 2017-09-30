@@ -2,15 +2,15 @@
 
 .about-title{
     text-align: center;
-    @include text(30px , 1); 
+    @include text(28px , 1); 
     margin: 0;
 }
 .about-body{
     text-align: left;
     color: $site-title-text-color;
-    @include text(15.1px ,1.5); 
+    @include text(15.6px ,1.6, lighter); 
     margin: {
-        top: 50px;
+        top: 40px;
         bottom: 70px;
         left:0;
         right:0;

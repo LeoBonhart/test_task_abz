@@ -1,30 +1,18 @@
 @import "~sass/mixins.scss";
-.navigation {
-    &.active{
-        .navigation-item {
-            background-color:$btn-add-color;
-            color: white;
-            border-color: lighten($site-green-color,20%);
-            .navigation-ico {                
-                filter: contrast(200%) brightness(200%);
-            }
-            &:hover{
-                cursor: pointer;           
-                background-color:$btn-add-hover-color;
-                color: white;
-                border-color: lighten($site-green-color,40%);
-            }
-        }
-    }
+
+$navig-height:50px;
+
+.navigation {    
     .navigation-item {
         text-decoration: none;
         color: rgb(89, 96, 107);
-        height: 50px;
+        height: $navig-height;
         position: relative;
         display: block;
         background-color: #fff;
         @include separator;
-        font-size: $site-font-size;
+        @include text( $site-font-size, 1);
+        margin-top: 1px; 
         &:before {
             content: "";
             display: inline-block;
@@ -33,8 +21,7 @@
             width: 0px;
         }
         .navigation-ico {
-            //fill: rgb(199, 205, 217);
-            margin-right: 27px;
+            margin-right: 23px;
             transition: $transition;
         }
         transition: $transition;
@@ -43,9 +30,27 @@
             background-color:$services-service-bg-hover-color;
             color: $services-service-text-hover-color;
             border-color: $services-service-text-hover-color;
-            //.navigation-ico{
-            //    fill: $services-service-text-hover-color;
-            //}
+        }
+    }
+    &.active{
+        .navigation-item {
+            position: relative;
+            &:after{
+                position: absolute;
+                content: '';
+                bottom: 0;
+                left: 0;
+                right: 0;
+                $border-active: 3px;
+                border-bottom: $border-active solid $site-green-color;                
+                height: $border-active;
+            }
+            &:hover{
+                cursor: pointer;    
+                &:after{       
+                    border-bottom-color: lighten($site-green-color,10%);
+                }
+            }            
         }
     }
 }

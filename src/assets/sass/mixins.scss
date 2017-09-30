@@ -41,14 +41,27 @@
     border-bottom: 1px solid $separator-color;
 }
 
-@mixin text($size, $lh) {
+@mixin text($size, $lh, $weight: normal) {
     font-size: $size;
     line-height: $lh;
     font-family: $site-font;
+    @if $weight == normal {
+        font-family: $site-font;
+    };
+    @if $weight == lighter {
+        font-family: $site-font-thin;
+    }; 
+    @if $weight == bolder {
+        font-family: $site-font-bolder;
+    };
+    @if $weight == bold {
+        font-family: $site-font-bold;
+    }; 
+    font-weight: $weight;
 }
 
-@mixin lft-sdbr-linkstext($size, $lh){
-    @include text($size, $lh);
+@mixin lft-sdbr-linkstext($size, $lh, $weight: normal){
+    @include text($size, $lh, $weight: normal);
     color: $color-left-bar-links;
     text-decoration: none;
     transition:$transition;
@@ -57,13 +70,13 @@
         cursor: pointer;
     }  
 }
-@mixin title($size:15px, $lh:10px) {
+@mixin title($size:14px, $lh:10px, $weight: normal) {
     display: inline-block;
     color: $site-title-text-color;
-    @include text($size, $lh);
+    @include text($size, $lh, $weight);
 }
 
-@mixin sidebar-link($size:15px, $lh:10px) {
+@mixin sidebar-link($size:14px, $lh:10px) {
     @include text($size, $lh);
     color: $site-text-color;
     cursor: pointer;

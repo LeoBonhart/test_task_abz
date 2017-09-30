@@ -29,7 +29,7 @@ export class ContactUsService {
         return drpdwn;
     }
 
-    postAPI(formData: any): Observable<any|string> {// 	(◕‿◕) через фидлер определил, надоело доставать токены вручную.
+    postAPI(formData: any): Observable<any|string> {
         let had = new Headers();
         had.append('Content-Type', 'multipart/form-data');
         return this.http.post(this.APIPathPostDATA, formData, { headers: had })

@@ -15,7 +15,7 @@ nav {
         margin-left: 10px;
         padding-top: 11px;
         padding-bottom: 15px;
-        margin-right: 31px;
+        margin-right: 32px;
         width: 130px;
         position: relative;
         transition: margin 1s;
@@ -54,9 +54,8 @@ nav {
             &:focus {
                 border: 0px solid transparent;
             }
-            font-size: $site-font-size;
             color: white;
-            font-family: $site-font;
+            @include text( $site-font-size,1,lighter);
             &::placeholder {
                 color: white;
             }
@@ -104,14 +103,11 @@ nav {
         .user-image {
             vertical-align: middle;
             line-height: normal;
-            @include img-in-box(32px, 2px, 11px);
+            @include img-in-box(32px, 2px, 7px);
         }
         .user-name {
-            //display: inline-block;
             text-align: left;
-            font-size: 17px;
-            //height: 100%;
-            font-family: $site-font;
+            @include text( 16px, 1, lighter);
             color: white;
             vertical-align: middle;            
         }

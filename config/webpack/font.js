@@ -4,7 +4,7 @@ module.exports = function(){
         module: {
             rules: [
                 {
-                    test: /\.(woff|woff2|ttf|eot)$/,
+                    test: /\.(woff|woff2|ttf|eot|otf)$/,
                     use: [
                         {
                             loader:'file-loader',
